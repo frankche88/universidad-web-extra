@@ -1,0 +1,27 @@
+<div>
+  <button (click)="clear(); showAlumnos()">Todos los estudiantes</button>
+  <button (click)="clear(); showAlumnosByType('PREGRADO')">Estudiantes de pregrado</button>
+  <button (click)="clear(); showAlumnosByType('MAESTRIA')">Estudiantes de maestria</button>
+  <button (click)="clear(); showAlumnosByType('DOCTORADO')">Estudiantes de doctorado</button>
+  <button (click)="clear()">clear</button>
+  
+  <span *ngFor="let alumno of alumnos">
+      <div class="alumno" >
+      
+          <span *ngIf="alumno">
+            <p>Nombre  : {{alumno.nombre}}</p>
+            <p>Apellido: {{alumno.apellido}}</p>
+            <p>Estudia : {{alumno.tipo}}</p>
+            <p>Monto de la beca: {{alumno.montoBeca}}</p>
+            <div *ngIf="headers">
+              Response headers:
+              <ul>
+                <li *ngFor="let header of headers">{{header}}</li>
+              </ul>
+            </div>
+          </span>
+          <hr/>
+      </div>
+  </span>
+</div>
+<p *ngIf="error" class="error">{{error | json}}</p>
