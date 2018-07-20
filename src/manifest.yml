@@ -1,0 +1,7 @@
+---
+applications:
+- name: university
+  buildpack: staticfile_buildpack
+  memory: 256M
+  instances: 1
+random-route: true

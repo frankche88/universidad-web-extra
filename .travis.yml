@@ -1,0 +1,33 @@
+language: node_js
+
+node_js:
+  - "8"
+
+branches:
+  only:
+    - master
+
+before_script: # commands to run before the build step
+   - npm install -g --silent @angular/cli
+
+script:
+  - ng build --prod
+
+before_deploy: cd dist
+
+deploy:
+   provider: cloudfoundry
+   username:
+    secure: "FWO8kSl14SXDmakBYPT+hpR/OqxRY1zgfsswCVPqOP4Dk9ZAQ/ntTUjjwv4wefiT6jMV2HTnpExSHUH0ON0jeylAparJsmZKjAzOMg60vbRysjMH8ZnSyyiZUW3v89fB2QehT0Tc+k6Na48WpzulGWU6EJeSQR5M70ua1r3DTBLvu0W4B27bQjucF5PKg6hkRwAN21bKY6B1v+90LRoybgmjaIWx+8LgQHOtErKrMCaOXjNfEd1S1XXTknoGyUcKTObqa3e9m+Uh0LfJKZbrgarO77Ry0u+3fhvmM4Uwun2Y3/7fJuEpkhRLLbaFJ3XDvfvYRJNYico2K1Y2vBxRIGs+ihAxvZP9ZKyUjJmO0QhCOsw/9NsuEPEAubLJmX15CqSKKdkFx3t4I2xJ41woEJGKuyDqJxiUJKE1A7/dHdTOVpUIQVaDNzzAx/1j10k4fpiMeXf8uWaFFkon6yJjgZ2PxM/trST4t9z4NBYrUWTRCg116odbqkedvYynGbBwomqkimx/hWA+2Gb4qBR1k63FLPDRJzR/UFr6r/pOKrTgOWFadLv4y3u1HYQU6bA3uQXbXOtsTtDLGKhWL+Rgg9WCCQ410Un55zqoDEEB30SxDHuLYOJ5EycJUpA3UtnvKxvJIPr12cMekPAdo60G6Jr+l/fugPoaLggOQlZ0iTc="
+   password:
+    secure: "GmmNb8NJWoLUMpXW0bhoNO0PlWe9CWgxRy0c6S8TM+f9Qjz+x38+mM5l1Mke98/WANarOm9oXEF2l2XaMF1FpguArJQF34IKz8/x8Gtsj9Tz/f4PyMBf7JWdTguTfgpM1maqGmFz53F8GEokeIoxpM9YQHhiRDM7nKr/OBprMxmkqCb/JrbRRK2PdAa7ITjoDB5AwraVvvuq0eP6SOF//xu9Q1svhI00I1DIHUlAUcKkoSYuWtbbnb2MjG3uE1pIC6oOECUIWM5vxvVTuTyQbIvY95SuM6S7I7tMUO90t6FO9dXwqZ9y8KCQEOffWOjtlA/Say2kAVJD0VsEa1fMm9fM34XkVS9rZy7CW9yIzMUfCghwbhlGD+TVP7iXS4Hau5XWsp2hhGIsgrR0RNvS0+OMnarSxn55BblXRfELroWarM38ca70YpgvPc1EeNe3SZP40xk7LaZZYsBvqSwBb1XVt9XekXeBuwU51mKIkewxpreEepn4H8xik8lWKZqXfMFTRSYk0s440XLR5UOdePQCSYOCR/qtst9itVoBQbOTzh/3umBWAkzWMGuMMFd8Muvgr5ajy0JJwD9/DOBNcSQv/PVf/x3t2TByzTylg5egMez9xZGHIYv9ihZUu/G0mooDR4VFl/17xVfBmVVx6BO0h8eYXVO6Zi2TPRpdwxg="
+   api: https://api.run.pivotal.io
+   organization:
+    secure: "bIKYrnWXz2UElREHscDuzdcTb/ZrmzSnTTAbok/VeM0/6xDJc83NHkc/Z8/BMMXijDVQ8RDiNMMYjo0mZgif88Ob+CZyHdaia1uy+35y5NMFhYGdFgviZXVyt0i668Q74kjp2gfOZcc53I6gk+38FxZ9mNprLSsrhKPm7+3uYXxo/FxDQ3AEqY0MSsNuoMFXuWivoN+S3D394hYFniaFc7CtLuPY9857ZArJjIC50MWEc2rBO+6kZh9mHGzBCWItPwdHi7ts9l9ZenhoU7c3SngjGviA3D4QEuqKRFe/5SX50rk1mdKj8kMrqiMzqHsLWQN37T3q4XPr6vEYdIa6ceg4hVf1FOeq9JNaMorf6rYakjnz2bPCXhPrDNe4vZluHQ1vvA/wSuyoYXeChKTEDS8veuebGCunTaYb1+bNm0wV4SqwAKhELFwUrbSJlXs99OsK7n/Ysaa8PxaBjK9lefmQZ4zGiAJzx8ID4FefZY3qGaQFHkbxAUw6gkKue4nt6V7AHlaBht4aqliISKkRm8REDHxU9sY9LlfSqutOtBaauOQnRxPgupkscROW6bfnbIABhUtyeKW94zYFwINih//x6mfgbjojRK9zDkkCnazCcJo6cquVxqbRN9bSKLQ5+BfkI72Q+ZEQP1cwqTlGyCD+2M9vwXM4j03vNeoEU4E="
+   space: development
+
+notifications:
+  email: # only receive email when the build status changes (someone broke the build!) 
+    on_failure: change
+on_success: change 
+
