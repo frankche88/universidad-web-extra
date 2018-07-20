@@ -22,10 +22,11 @@ export interface Alumno {
 })
 export class AlumnosService {
 
+  private apiUrl = environment.apiUrl;
   private alumnoUrl:string;
 
   constructor(private http: HttpClient) { 
-    this.alumnoUrl = 'assets/alumno.json';
+    this.alumnoUrl = this.apiUrl + 'alumnos';
   }
   
   getAlumno(): Observable<Alumno[]> {

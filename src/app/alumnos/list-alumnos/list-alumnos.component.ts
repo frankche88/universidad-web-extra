@@ -25,8 +25,6 @@ export class ListAlumnosComponent implements OnInit {
   
   showAlumnos() {
   
-    
-  
     this.alumnosService.getAlumno()
       .subscribe(
         (data: Alumno[]) => this.alumnos = data, // success path
@@ -35,6 +33,11 @@ export class ListAlumnosComponent implements OnInit {
   }
   
   showAlumnosByType(type: string) {
+    this.alumnosService.getAlumnoByType(type)
+      .subscribe(
+        (data: Alumno[]) => this.alumnos = data, // success path
+        error => this.error = error // error path
+      );
   }
   
   
