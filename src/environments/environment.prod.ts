@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl : 'http://localhost:8080/api/'
+  apiUrl : 'https://examen-final-pregunta3.cfapps.io/api/'
 };
